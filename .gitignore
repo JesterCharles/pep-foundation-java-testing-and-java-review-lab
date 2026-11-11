@@ -1,0 +1,11 @@
+# Learner repository: Maven output and local editor/OS files.
+target/
+.idea/
+*.iml
+.vscode/
+.classpath
+.project
+.settings/
+.factorypath
+.DS_Store
+Thumbs.db

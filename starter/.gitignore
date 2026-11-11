@@ -1,0 +1,11 @@
+# Maven output and local editor/OS files in this Maven project.
+target/
+.idea/
+*.iml
+.vscode/
+.classpath
+.project
+.settings/
+.factorypath
+.DS_Store
+Thumbs.db

@@ -1,0 +1,22 @@
+Expected output when every task is complete
+
+Test command, run in starter/:
+  mvn -q -o test
+
+Terminal: the command exits with status 0. Quiet mode (-q) prints only
+problems; the JVM may additionally print one harmless warning line about
+class data sharing ("Sharing is only supported for boot loader classes"),
+which comes from running the tests under the Mockito and JaCoCo agents.
+
+Test report, starter/target/surefire-reports/legacy.OrderServiceTest.txt, begins:
+  Tests run: 5, Failures: 0, Errors: 0, Skipped: 0
+
+Coverage report: starter/target/site/jacoco/index.html exists after the run;
+open it in a browser for the README's coverage task.
+
+Program output, from java -cp target/classes legacy.OrderService run in starter/ after the tests:
+  Subtotal: 10.0
+  Unit: 8.0
+  Zone 1: local
+  Zone 3: overseas
+  Cheapest first: [pen, tea, mug]
