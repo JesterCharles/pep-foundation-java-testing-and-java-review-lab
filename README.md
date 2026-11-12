@@ -104,18 +104,28 @@ Read the code in this order:
    - reject a negative answer with `new IllegalArgumentException("unknown sku: " + sku)`;
    - store the price, and return it.
 3. The same test stubs an unknown sku and expects your exception via `assertThrows`. The test knows the exception is coming, and treats catching it as the result.
-4. If Mockito reports `Wanted 1 time ... but was 2 times`, `unitPrice` still asks the feed on every call. Answer from the cache first.
-5. Compare the two test doubles you now know:
+4. Compare the two test doubles you now know:
    - the fake (Task 1) is a small real object, clearest for canned data;
    - the mock records interactions, which is the only way to test "called at most once".
 
    Choosing between them is a design decision, not a habit.
 
+<details><summary>Hint</summary>
+
+If Mockito reports `Wanted 1 time ... but was 2 times`, `unitPrice` still asks the feed on every call. Answer from the cache first.
+
+</details>
+
 ### Task 4: modernize the fall-through switch
 
 1. The task 4 test shows zone 1 answering `"regional"`. The old colon-style switch is missing a `break`, so case 1 falls through into case 2. This kind of bug is why the colon form counts as a legacy idiom.
 2. Rewrite `shippingLabel` as an arrow-label switch expression (`case 1 -> "local"; ... default -> "unknown"`). Arrows cannot fall through, so the rewrite removes this bug and the whole kind of bug.
-3. A switch expression ends with a semicolon after its closing brace: `return switch (zone) { ... };`.
+
+<details><summary>Hint</summary>
+
+A switch expression ends with a semicolon after its closing brace: `return switch (zone) { ... };`.
+
+</details>
 
 ### Task 5: modernize the comparator
 
