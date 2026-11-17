@@ -4,7 +4,7 @@ __pycache__/
 *.egg-info/
 .venv/
 .env
-/reports/
+reports/
 
 # Node
 node_modules/
@@ -14,13 +14,3 @@ target/
 build/
 .gradle/
 *.class
-
-# Editor and OS files
-.idea/
-*.iml
-.classpath
-.project
-.settings/
-.factorypath
-.DS_Store
-Thumbs.db

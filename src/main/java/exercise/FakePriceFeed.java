@@ -1,4 +1,4 @@
-package legacy;
+package exercise;
 
 import java.util.HashMap;
 

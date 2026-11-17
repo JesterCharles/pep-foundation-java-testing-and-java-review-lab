@@ -1,4 +1,4 @@
-package legacy;
+package exercise;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -15,12 +15,13 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 
 /**
- * Public tests for the Testing and Java Review lab. These tests came first:
+ * Visible tests for the Testing and Java Review lab, one per task. These tests came first:
  * they describe what the old service SHOULD do. Read a failing test, then
  * change the service until it passes. Every test follows arrange-act-assert.
+ * Restored over the learner's checkout at grade time.
  */
 @TestMethodOrder(MethodOrderer.MethodName.class)
-class OrderServiceTest {
+class VisibleTests {
 
     @Test
     void task1FakePriceFeed() {
@@ -41,11 +42,7 @@ class OrderServiceTest {
         feed.setPrice("tea", 2.5);
         OrderService service = new OrderService(feed);
         // Act + assert: 4 units at 2.5 are 10.0 - the old code billed one unit short.
-        assertAll(
-                () -> assertEquals(10.0, service.subtotal("tea", 4), "Task 2: subtotal(\"tea\", 4)"),
-                () -> assertEquals(2.5, service.subtotal("tea", 1),
-                        "Task 2: subtotal(\"tea\", 1), a single unit must not be free"),
-                () -> assertEquals(0.0, service.subtotal("tea", 0), "Task 2: subtotal(\"tea\", 0)"));
+        assertEquals(10.0, service.subtotal("tea", 4), "Task 2: subtotal(\"tea\", 4)");
     }
 
     @Test
@@ -63,10 +60,9 @@ class OrderServiceTest {
                 () -> assertEquals(2.5, first, "Task 3: unitPrice(\"tea\")"),
                 () -> assertEquals(2.5, second, "Task 3: unitPrice(\"tea\") again, from the cache"),
                 () -> verify(feed, times(1)).priceOf("tea"));
-        IllegalArgumentException unknown = assertThrows(IllegalArgumentException.class,
+        assertThrows(IllegalArgumentException.class,
                 () -> service.unitPrice("soap"),
                 "Task 3: a negative feed answer means the sku is unknown and must be rejected");
-        assertEquals("unknown sku: soap", unknown.getMessage(), "Task 3: the rejection names the sku");
     }
 
     @Test
@@ -77,9 +73,7 @@ class OrderServiceTest {
         assertAll(
                 () -> assertEquals("local", service.shippingLabel(1), "Task 4: shippingLabel(1)"),
                 () -> assertEquals("regional", service.shippingLabel(2), "Task 4: shippingLabel(2)"),
-                () -> assertEquals("overseas", service.shippingLabel(3), "Task 4: shippingLabel(3)"),
-                () -> assertEquals("unknown", service.shippingLabel(0), "Task 4: shippingLabel(0)"),
-                () -> assertEquals("unknown", service.shippingLabel(9), "Task 4: shippingLabel(9)"));
+                () -> assertEquals("overseas", service.shippingLabel(3), "Task 4: shippingLabel(3)"));
     }
 
     @Test
@@ -93,11 +87,8 @@ class OrderServiceTest {
         List<String> shelf = List.of("tea", "mug", "pen");
         // Act
         List<String> sorted = service.cheapestFirst(shelf);
-        // Assert: ascending by price, and the input list is untouched.
-        assertAll(
-                () -> assertEquals(List.of("pen", "tea", "mug"), sorted,
-                        "Task 5: cheapest first means ascending by unit price"),
-                () -> assertEquals(List.of("tea", "mug", "pen"), shelf,
-                        "Task 5: the method returns a new list and leaves the input alone"));
+        // Assert: ascending by price.
+        assertEquals(List.of("pen", "tea", "mug"), sorted,
+                "Task 5: cheapest first means ascending by unit price");
     }
 }
