@@ -73,7 +73,9 @@ class VisibleTests {
         assertAll(
                 () -> assertEquals("local", service.shippingLabel(1), "Task 4: shippingLabel(1)"),
                 () -> assertEquals("regional", service.shippingLabel(2), "Task 4: shippingLabel(2)"),
-                () -> assertEquals("overseas", service.shippingLabel(3), "Task 4: shippingLabel(3)"));
+                () -> assertEquals("overseas", service.shippingLabel(3), "Task 4: shippingLabel(3)"),
+                () -> assertEquals("unknown", service.shippingLabel(0), "Task 4: shippingLabel(0)"),
+                () -> assertEquals("unknown", service.shippingLabel(9), "Task 4: shippingLabel(9)"));
     }
 
     @Test
@@ -90,5 +92,7 @@ class VisibleTests {
         // Assert: ascending by price.
         assertEquals(List.of("pen", "tea", "mug"), sorted,
                 "Task 5: cheapest first means ascending by unit price");
+        assertEquals(List.of("tea", "mug", "pen"), shelf,
+                "Task 5: the method returns a new list and leaves the input alone");
     }
 }

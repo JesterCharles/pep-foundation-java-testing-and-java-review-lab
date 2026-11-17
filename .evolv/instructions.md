@@ -19,7 +19,7 @@ You practise JUnit, hand-written fakes, Mockito mocks with `when`/`verify`, `ass
    Every failure message starts with its task number, such as `Task 1:`.
 3. Work through the checklist below in order. After each task, select **Run Tests** again and read the remaining `Task N:` messages.
 4. **You are finished with Tasks 1-5 when all 5 visible tests pass.** Then do Task 6, which has no test, and select **Submit**.
-   Submitting also runs held-out tests you can't see. They check the edge cases each task's steps describe, such as zero units or an unknown zone.
+   Submitting also runs held-out tests you can't see. They check the edge cases each task's steps describe, such as zero units or the exact rejection message.
 
 ```
 OPEN project -> RUN TESTS: 5 visible tests fail (expected)
@@ -99,7 +99,7 @@ If Mockito reports `Wanted 1 time ... but was 2 times`, `unitPrice` still asks t
 ### Task 4: modernize the fall-through switch
 
 1. The task 4 test shows zone 1 answering `"regional"`. The old colon-style switch is missing a `break`, so case 1 falls through into case 2. This kind of bug is why the colon form counts as a legacy idiom.
-2. Rewrite `shippingLabel` as an arrow-label switch expression (`case 1 -> "local"; ... default -> "unknown"`). Arrows cannot fall through, so the rewrite removes this bug and the whole kind of bug. Every other zone, such as 0 or 9, must answer `"unknown"`; the held-out tests check that.
+2. Rewrite `shippingLabel` as an arrow-label switch expression (`case 1 -> "local"; ... default -> "unknown"`). Arrows cannot fall through, so the rewrite removes this bug and the whole kind of bug. Every other zone, such as 0 or 9, must answer `"unknown"`; the task 4 test checks that too.
 
 <details><summary>Hint</summary>
 
@@ -111,7 +111,7 @@ A switch expression ends with a semicolon after its closing brace: `return switc
 
 1. The task 5 test wants `cheapestFirst` in ascending order. The old anonymous `Comparator` class sorts in descending order, and takes seven lines to do it.
 2. Rewrite it as a lambda, `(a, b) -> Double.compare(unitPrice(a), unitPrice(b))`, or as `Comparator.comparing(this::unitPrice)`.
-3. Keep returning a new list: the held-out tests check that the input list is untouched.
+3. Keep returning a new list: the task 5 test also checks that the input list is untouched.
 
 ### Task 6: read the coverage report and close one gap
 
