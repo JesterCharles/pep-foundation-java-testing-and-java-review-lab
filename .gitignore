@@ -1,8 +1,23 @@
-# Learner repository: Maven output and local editor/OS files.
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+.env
+/reports/
+
+# Node
+node_modules/
+
+# Java
 target/
+build/
+.gradle/
+*.class
+
+# Editor and OS files
 .idea/
 *.iml
-.vscode/
 .classpath
 .project
 .settings/
