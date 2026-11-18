@@ -1,4 +1,4 @@
-package legacy;
+package exercise;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -14,7 +14,7 @@ import java.util.List;
  * daily job of a developer: read the failing tests first, then fix and
  * modernize the code underneath them, task by task. The public tests describe
  * the intended behavior; make them pass without breaking the ones already
- * green. The README lists the steps for every task.
+ * green. The lab README lists the steps for every task.
  */
 public class OrderService {
 

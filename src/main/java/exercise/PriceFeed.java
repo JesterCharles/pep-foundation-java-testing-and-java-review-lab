@@ -1,4 +1,4 @@
-package legacy;
+package exercise;
 
 /**
  * The price source the order service depends on. This interface is complete.
